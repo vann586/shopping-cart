@@ -1,0 +1,4 @@
+rootProject.name = 'shopping-cart'
+
+include 'catalog-service'
+include 'config-server'

@@ -1,0 +1,64 @@
+buildscript {
+   ext {
+      springBootVersion = '2.0.3.RELEASE'
+   }
+   repositories {
+      mavenCentral()
+      maven { url "https://repo.spring.io/snapshot" }
+      maven { url "https://repo.spring.io/milestone" }
+      maven { url "https://plugins.gradle.org/m2/" }
+   }
+   dependencies {
+      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+   }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.sivalabs'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+idea {
+   module {
+      downloadJavadoc = true
+      downloadSources = true
+   }
+}
+
+repositories {
+   mavenCentral()
+   maven { url "https://repo.spring.io/snapshot" }
+   maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+   compile('org.springframework.boot:spring-boot-starter-actuator')
+   compile('org.springframework.boot:spring-boot-starter-web')
+   compile('org.springframework.boot:spring-boot-starter-data-jpa')
+   compile('org.springframework.cloud:spring-cloud-config-server')
+
+   compile('mysql:mysql-connector-java')
+   compile('org.projectlombok:lombok')
+
+   compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+
+   runtime('org.springframework.boot:spring-boot-devtools')
+   runtime('com.h2database:h2')
+   runtime('mysql:mysql-connector-java')
+
+   testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+ext {
+   springCloudVersion = 'Finchley.RELEASE'
+}
+
+dependencyManagement {
+   imports {
+      mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+   }
+}
