@@ -25,10 +25,10 @@ public class ProductController {
 
    @GetMapping("")
    public List<Product> allProducts() {
-      List<Product> reponse = productService.findAllProducts();
-      log.info("Products: {}", reponse.toString());
+      List<Product> response = productService.findAllProducts();
+      log.info("Products: {}", response);
 
-      return reponse;
+      return response;
    }
 
    @GetMapping("/{code}")

@@ -2,3 +2,5 @@ rootProject.name = 'shopping-cart'
 
 include 'catalog-service'
 include 'config-server'
+include 'service-registry'
+include 'inventory-service'
